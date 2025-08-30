@@ -11,4 +11,4 @@
 <sup>8</sup> Dept Ophthalmology, Hamilton Eye Institute, University of Tennessee Health Science Center,
 Memphis, TN<br> 
 
-#### To reproduce all figures, download the repository, and follow the instructions in each Figure folder.<br>
+#### To reproduce the figures, download the repository, and follow the instructions in each Figure folder.<br>
