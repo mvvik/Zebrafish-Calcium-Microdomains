@@ -7,8 +7,8 @@
 <sup>4</sup> Dept of Opthalmology and Visual Sciences, University of Wisconsin, Madison, WI<br>
 <sup>5</sup> Dept Math Sciences, New Jersey Institute of Technology, Newark, NJ<br>
 <sup>6</sup> Dept Cellular and Molecular Physiology, Yale University School of Medicine, New Haven, CT<br>
-<sup>7</sup> Dept Opthalmology and Visual Sciences, Yale University School of Medicine, New Haven, CT<br> 
-<sup>8</sup> Dept Opthalmology, Hamilton Eye Institute, University of Tennessee Health Science Center,
+<sup>7</sup> Dept Ophthalmology and Visual Sciences, Yale University School of Medicine, New Haven, CT<br> 
+<sup>8</sup> Dept Ophthalmology, Hamilton Eye Institute, University of Tennessee Health Science Center,
 Memphis, TN<br> 
 
 #### To reproduce the figures, download the repository, and follow the instructions in each Figure folder.<br>
