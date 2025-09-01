@@ -10,7 +10,7 @@
 
 recomputeFlag = 1;         % Recompute or just plot?
 
-if ~exist('DATA', 'dir')   % If DATA folder doesn't exist:
+if ~isfolder('DATA')   % If DATA folder doesn't exist:
     mkdir('DATA');         % Create folder
     recomputeFlag = 1;     % Force [Ca2+] simulation
 end
@@ -163,3 +163,4 @@ for n = 1 : 6
              'MarkerSize', 5);
     end
 end
+
