@@ -5,12 +5,11 @@
 %   Rameshkumar, Shrestha, Boff, Hoon, Matveev, Zenisek, Vaithianathan
 %   https://elifesciences.org/reviewed-preprints/105875#s2
 %               Code: Victor Matveev, Sep 1, 2025
+% =========================================================================
 
-% ========================  Global Settings  ==============================
-
-nTrials = 800;     % Number of random starting points for optimization
-T0      = 24;      % Stimulus onset time (ms)
-tfs     = 12;      % Font size for figure titles
+nTrials = 800;     % --- Number of random starting points for optimization
+T0      = 24;      % --- Stimulus onset time (ms)
+tfs     = 12;      % --- Font size for figure titles
 
 % --------  Columns to analyze (2 = proximal, 4 = distal)
 COLS  = 2:2:4;
