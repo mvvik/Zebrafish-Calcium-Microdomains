@@ -47,7 +47,7 @@ pumpKD   = 0.3                            % Half-saturation of PMCA (µM)
 bc.define Pump1  1 0  pumpRate 1 pumpKD  ncxRate 1 ncxKD
 bc.define Pump2  1 0  pumpRate 2 pumpKD  ncxRate 1 ncxKD
 
-% ------------------------  Exogenous Buffers ----------------------------
+% --- Exogenous Buffer parameters: Naraghi & Neher (1997) Cell Calcium  ---
 
 if EGTA.total > 0
     buffer EGTA
@@ -147,4 +147,5 @@ plot Ca5
 
 % Export plot data
 plot.print 'DATA/' Prefix '_Kappa' Kappa '_KD' KD '_iter' iter '_'
+
 
