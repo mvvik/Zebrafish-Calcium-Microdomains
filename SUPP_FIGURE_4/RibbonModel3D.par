@@ -1,5 +1,5 @@
 %
-%   Main CalC Script for Figure 7 in the eLife manuscript:
+%   Main CalC Script for Supp Fig 4 in the eLife manuscript:
 %
 %  "Nanophysiology Approach Reveals Diversity in Ca2+ Microdomains ..."
 %   Rameshkumar, Shrestha, Boff, Hoon, Matveev, Zenisek, Vaithianathan
@@ -130,4 +130,5 @@ plot Ca5
 
 % Export plot data
 plot.print 'DATA/Kappa' Kappa '_KD' KD '_iter' iter '_'
+
 
