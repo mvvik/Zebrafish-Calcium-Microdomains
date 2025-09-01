@@ -4,7 +4,7 @@
 <sup>1</sup> Dept Pharmacology, Addiction Science, and Toxicology, Univ. of Tennessee Health Science Center, Memphis, TN<br>
 <sup>2</sup> Dept Neuroscience, University of Wisconsin, Madison, WI<br>
 <sup>3</sup> McPherson Eye Research Institute, University of Wisconsin, Madison, WI<br>
-<sup>4</sup> Dept of Ophthalmology and Visual Sciences, University of Wisconsin, Madison, WI<br>
+<sup>4</sup> Dept of Opthalmology and Visual Sciences, University of Wisconsin, Madison, WI<br>
 <sup>5</sup> Dept Math Sciences, New Jersey Institute of Technology, Newark, NJ<br>
 <sup>6</sup> Dept Cellular and Molecular Physiology, Yale University School of Medicine, New Haven, CT<br>
 <sup>7</sup> Dept Ophthalmology and Visual Sciences, Yale University School of Medicine, New Haven, CT<br> 
