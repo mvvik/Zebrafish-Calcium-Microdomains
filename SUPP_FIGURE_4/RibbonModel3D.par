@@ -1,0 +1,133 @@
+%
+%   Main CalC Script for Figure 7 in the eLife manuscript:
+%
+%  "Nanophysiology Approach Reveals Diversity in Ca2+ Microdomains ..."
+%   Rameshkumar, Shrestha, Boff, Hoon, Matveev, Zenisek, Vaithianathan
+%   https://elifesciences.org/reviewed-preprints/105875#s2
+%               Code: Victor Matveev, Aug 31, 2025
+
+% ------------------------  Global Settings  -----------------------------
+
+verbose           = 0                     % Suppress diagnostic output
+adaptive.accuracy = 1e-5                  % Accuracy for adaptive solver
+plot.steps.binary = 1                     % Output only final state in binary plots
+
+% Input parameters (passed via command-line or batch script)
+
+iter    = $2                              % Iteration mode selector
+Kappa   = $3                              % Buffer capacity 
+
+include CommonParameters.m                % Import common parameters
+ICaMax  = ICA pA                          % Maximal Ca2+ current
+
+% ------------------------  Main parameters   -----------------------------
+
+Ca.bgr = 0.10                             % Basal [Ca2+] in µM
+Ca.D   = 0.22                             % Diffusion coefficient (µm^2/ms)
+
+% ------------------------  Endogenous Buffer (Bm) -----------------------
+
+buffer Bm                                 % See CommonParameters.m for values
+Bm.total = Kappa * KD                     % Total concentration scaled by Kappa
+Bm.KD    = KD                             % Buffer dissociation constant (µM)
+Bm.kplus = Kplus                          % Forward binding rate (µM⁻¹ ms⁻¹)
+Bm.D     = Diff                           % Buffer diffusivity
+
+% ------------------------  Membrane Transporters ------------------------
+
+ncxRate  = 0.4                            % Na/Ca exchanger rate
+pumpRate = 0.03                           % Ca2+ pump rate
+
+ncxKD    = 1.5                            % Half-saturation of NCX  (µM)
+pumpKD   = 0.3                            % Half-saturation of PMCA (µM)
+
+% Define boundary conditions with pumps and exchangers
+
+bc.define Pump1  1 0  pumpRate 1 pumpKD  ncxRate 1 ncxKD
+bc.define Pump2  1 0  pumpRate 2 pumpKD  ncxRate 1 ncxKD
+
+% ========================================================================
+%                          ITERATION MODES
+% ========================================================================
+
+if iter == 1      % ---------- Mode 1: Run stimulus pulse ---------------
+
+    tauICa = 1                                 % Time constant of ICa activation
+    run adaptive Pulse                         % Run adaptive solver during Pulse
+    current = ICaMax / 4  (1 - exp(-t/tauICa)) % Time-dependent ICa waveform
+                                               % 1/4 factor due to 4-fold volume symmetry
+                                               % Save results for later use:
+
+    fnameOut = 'DATA/ExportPulse' Pulse 'ms_Kappa' Kappa '_KD' KD '.dat'
+    plot binary Ca 'DATA/CaPulse' Pulse 'ms_Kappa' Kappa '_KD' KD '.dat'
+    Export Pulse fnameOut
+endif
+
+if iter == 2     % ---------- Mode 2: Continue after stimulus ------------
+
+    plot 2D Ca                             % Generate spatial Ca2+ plots
+    run adaptive postPulse                 % Continue simulation post-stimulus
+    current = 0                            % No current during post-pulse
+                                           % Import previously saved data:
+
+    fnameIn = 'DATA/ExportPulse' Pulse 'ms_Kappa' Kappa '_KD' KD '.dat'
+    Import fnameIn
+endif
+
+% ========================================================================
+%                     BOUNDARY CONDITIONS & SOURCE
+% ========================================================================
+
+Ca.bc Noflux  Pump2   Noflux  Pump2   Pump1   Pump2
+Ca.bc Noflux  Noflux  Noflux  Noflux  Noflux  Noflux
+
+ICa_X = rStalk + 0.025                    % Source x-position
+
+Ca.source ICa_X ICa_X 0 0.005 0.005 0.005 % Define Ca2+ source geometry
+
+% ========================================================================
+%                              GEOMETRY
+% ========================================================================
+
+Nx =  64                                  % Grid points in x
+Ny =  64                                  % Grid points in y
+Nz = 110                                  % Grid points in z
+
+volume 0 Ly 0 Lx 0 Lz                     % Define simulation volume
+grid Nx Ny Nz                             % Generate grid
+
+z1 = Lz - 0.01                            % Top z coordinate
+
+% Define ribbon-shaped obstacles
+obstacle = x^2/xAxis^2 + y^2/yAxis^2 + (z - z0)^2/zAxis^2 <= 1
+obstacle = (x < 0.030) (y < 0.015) (z < z0)
+
+% Apply stretching factors (nonuniform mesh refinement)
+stretch.factor = 1.02
+stretch x 0 xAxis 
+stretch y 0 yAxis
+stretch z 0 zTop
+
+% ========================================================================
+%                OUTPUT: [Ca2+] at Selected Locations
+% ========================================================================
+
+plot.method mute                          % Disable verbose plotting
+
+% Sample points (x,y,z) in µm
+Ca1 := Ca[ 0.0, 0.020, 0.01 ]
+Ca2 := Ca[ 0.0, 0.150, 0.01 ]
+Ca3 := Ca[ 0.0, 0.150, 0.25 ]
+Ca4 := Ca[ 0.0, 0.000, 0.45 ]
+Ca5 := Ca[ 0.0, 0.000, 0.80 ]
+
+% Plot calcium dynamics at selected locations
+plot Ca1
+plot Ca2
+plot Ca3
+plot Ca4
+plot Ca5
+
+% Export plot data
+plot.print 'DATA/Kappa' Kappa '_KD' KD '_iter' iter '_'
+
