@@ -1,6 +1,5 @@
 % =========================================================================
 % Read and plot 3D (or 4D) field dump produced by "plot binary Field fileName"
-% Modified for clarity, safety, and robust labeling
 % =========================================================================
 
 logMode = true;       % take log10 of Ca values
@@ -108,9 +107,6 @@ while ~state
     labelStr{end} = [labelStr{end}, ' \muM'];  % append units
     set(h, 'TickLabels', labelStr);
 
-    drawnow;
-    pause(0.2);
-
     % -----------------------------
     %   Exit if end of file reached
     % -----------------------------
@@ -118,3 +114,4 @@ while ~state
 end
 
 fclose(f);
+
