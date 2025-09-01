@@ -17,6 +17,6 @@ Do **not** directly execute any code in CALC folder. <br>
 
 **Note to Mac users:** macOS may block CalC execution due to security policy.
 If this happens, open Security Settings, scroll down to <code>cmac6109xM1 was blocked to protect your Mac</code>, select <code>Allow Anyway</code>, then run the code once again. 
-You may have to go through system pop-ups a few times more (just don't choose <code>move to trash</code>).<br>
+You may have to go through system pop-ups a few times more (just don't choose <code>move to trash</code>).
 Alternatively, you can compile the CalC [source code](https://github.com/mvvik/CalC-simple-buffer) and place the executable in the <code>CALC</code> folder.
 
