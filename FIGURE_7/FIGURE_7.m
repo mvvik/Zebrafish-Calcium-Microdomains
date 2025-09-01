@@ -8,8 +8,12 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% --- Recompute or just plot?
-recomputeFlag = 1;
+recomputeFlag = 1;         % Recompute or just plot?
+
+if ~exist('DATA', 'dir')   % If DATA folder doesn't exist:
+    mkdir('DATA');         % Create folder
+    recomputeFlag = 1;     % Force [Ca2+] simulation
+end
 
 % --- Special Locations (X, Z coordinates in microns)
 Locations = [ 0.02, 0.01; ...
