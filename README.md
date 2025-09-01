@@ -13,7 +13,7 @@ Memphis, TN<br>
 
 #### To reproduce the figures, download the repository, and follow the instructions in each Figure folder.<br>
 
-Do **not** directly execute any code in CALC folder. <br>
+Do **not** directly execute any code in <code>CALC</code> folder. <br>
 
 **Note to Mac users:** macOS may block CalC execution due to security policy.
 If this happens, open Security Settings, scroll down to <code>cmac6109xM1 was blocked to protect your Mac</code>, select <code>Allow Anyway</code>, then run the code once again. 
